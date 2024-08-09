@@ -35,4 +35,7 @@ Till i push again.
 
 Adios!
 
-LINK:(https://....)
+
+To run the application hit 'npm run dev' on your terminal
+        OR
+follow the LINK:(https://c-80-limited.vercel.app/)

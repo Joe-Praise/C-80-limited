@@ -16,11 +16,11 @@ const LineChart = (props: IPostInsightProps) => {
 
 	const chartConfig = {
 		user: {
-			label: 'score',
+			label: 'user',
 			color: 'linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(169,223,216,1) 0%)',
 		},
 		total_posts: {
-			label: 'mon',
+			label: 'total posts',
 			color: 'hsl(var(--chart-2))',
 		},
 	} satisfies ChartConfig;
@@ -54,7 +54,7 @@ const LineChart = (props: IPostInsightProps) => {
 							tickLine={false}
 							axisLine={false}
 							tickMargin={8}
-							tickFormatter={(value) => value}
+							tickFormatter={(value) => value.slice(0,4)}
 						/>
 						<YAxis
 							tickLine={false}
