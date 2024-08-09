@@ -29,6 +29,8 @@ Personal Goal going into this
 
 I hope this put a smile on your face at least, thank you for reading dearly beloved.
 
+One last thing, The dataset just be producing flat lines. Thought of changing things but i'd just leave it at that. Thank you!.
+
 Till i push again.
 
 Adios!
