@@ -9,31 +9,32 @@ import {
 	ChartTooltip,
 	ChartTooltipContent,
 } from '@/components/ui/chart';
-const chartData = [{ tag: 'todo', completed: 100, incomplete: 20 }];
+import { TodoProps } from '@/types';
+import { calculateTodosStatus } from '@/lib/helperFunctions';
 
-const chartConfig = {
-	completed: {
-		label: 'completed',
-		color: 'hsl(var(--chart-1))',
-	},
-	incomplete: {
-		label: 'incomplete',
-		color: 'hsl(var(--chart-2))',
-	},
-} satisfies ChartConfig;
+const RadialChart = (props: TodoProps) => {
+	const { todos } = props;
 
-const RadialChart = () => {
-	const total_visitors = chartData[0].completed + chartData[0].completed;
+	const todo_stat = calculateTodosStatus(todos);
 
-	const total_todo = 200;
-	const completed_todo = 150;
-	const start_angle = 180;
-	const end_angle = 0;
+	const chartData = [
+		{
+			tag: 'todo',
+			completed: todo_stat.completedTaskCount,
+			incomplete: todo_stat.incomplete,
+		},
+	];
 
-	const mapPercentageToAngle = () => {
-		const completion_percentage = (completed_todo / total_todo) * 100;
-		// const angle =
-	};
+	const chartConfig = {
+		completed: {
+			label: 'completed',
+			color: 'hsl(var(--chart-1))',
+		},
+		incomplete: {
+			label: 'incomplete',
+			color: 'hsl(var(--chart-2))',
+		},
+	} satisfies ChartConfig;
 
 	return (
 		<Card className='flex flex-col bg-transparent shadow-none border-none w-[174px] h-[174px]'>
@@ -41,10 +42,10 @@ const RadialChart = () => {
 				<ChartContainer config={chartConfig} className='p-0 w-full h-full'>
 					<RadialBarChart
 						data={chartData}
-						endAngle={end_angle}
+						endAngle={0}
 						innerRadius={70}
 						outerRadius={140}
-						startAngle={start_angle}
+						startAngle={180}
 						className='w-[174px] h-[174px] p-0'
 					>
 						<ChartTooltip
@@ -63,8 +64,7 @@ const RadialChart = () => {
 													className='fill-theme text-2xl font-bold '
 													style={{ color: 'red' }}
 												>
-													{/* {totalVisitors.toLocaleString()} */}
-													80%
+													{todo_stat.completion_percentage}%
 												</tspan>
 											</text>
 										);

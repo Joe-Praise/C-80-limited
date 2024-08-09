@@ -8,33 +8,34 @@ import {
 	TotalPostSvg,
 } from '../shared';
 
-import { SummaryCardDetails } from '@/types';
+import { SummaryCardDetails, WelcomeProps } from '@/types';
 
-const Welcome = () => {
+const Welcome = (props: WelcomeProps) => {
+	const { totalPosts, totalComments, totalAlbums, totalPhotos } = props;
 	const loggedInUser = 'Joseph';
 	const summary_card_details: SummaryCardDetails[] = [
 		{
 			id: '1',
 			icon: <TotalPostSvg />,
-			total: '$5k',
+			total: totalPosts + '',
 			label: 'Total Posts',
 		},
 		{
 			id: '2',
 			icon: <TotalCommentSvg />,
-			total: '500',
+			total: totalComments + '',
 			label: 'Total Comments',
 		},
 		{
 			id: '3',
 			icon: <TotalAlbumSvg />,
-			total: '9',
+			total: totalAlbums + '',
 			label: 'Total Posts',
 		},
 		{
 			id: '4',
 			icon: <TotalPhotoSvg />,
-			total: '12',
+			total: totalPhotos + '',
 			label: 'Total Photos',
 		},
 	];

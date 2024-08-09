@@ -1,26 +1,9 @@
 /* eslint-disable no-unused-vars */
 
+import { IPost } from '@/services/queries/posts/types';
+import { ITodo } from '@/services/queries/todos/types';
+import { IUser } from '@/services/queries/users/types';
 import { Dispatch, ElementType, ReactNode } from 'react';
-
-// declare type SetPositionProps = {
-// 	left: number;
-// 	width: number;
-// 	opacity: number;
-// };
-
-// declare type NavTabLiDetailsProps = {
-// 	isActive: boolean;
-// 	route: string;
-// 	openMenu: boolean;
-// 	handleToggleMenu: () => void;
-// 	isMobile: boolean;
-// };
-
-// declare type NavTabProps = {
-// 	children: ReactNode;
-// 	setPosition: Dispatch;
-// 	linkDetails: NavTabLiDetailsProps;
-// };
 
 declare type BentoWrapperProps = {
 	children: ReactNode;
@@ -51,4 +34,56 @@ declare type LineChartProps = {
 	calc: string;
 	wrapperColor: string;
 	lineColor: string;
+};
+
+declare type WelcomeProps = {
+	totalPosts: number;
+	totalComments: number;
+	totalAlbums: number;
+	totalPhotos: number;
+};
+
+declare type PostCommentVolumeType = {
+	postId: string;
+	postCount: number;
+	commentCount: number;
+}[];
+
+declare type IPostCommentData = {
+	postId: number;
+	commentCount: number;
+};
+
+declare type StackedBarChartProps = {
+	posts: IPost[];
+	comments: IComment[];
+};
+
+declare type TopUserWithAlbumsAndPhotos = {
+	userId: number;
+	name: string;
+	username: string;
+	email: string;
+	albumCount: number;
+	photoCount: number;
+};
+
+declare type TopUsersByAlbumProps = {
+	users: IUser[];
+	albums: IAlbum[];
+	photos: IPhoto[];
+};
+
+declare type TodoProps = {
+	todos: ITodo[];
+};
+
+declare type IUserPostCount = {
+	user: string;
+	total_posts: number;
+};
+
+declare type IPostInsightProps = {
+	users: IUser[];
+	posts: IPost[];
 };
