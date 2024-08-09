@@ -1,62 +1,37 @@
 'use client';
 import { Area, AreaChart, XAxis, YAxis } from 'recharts';
-
-import {
-	Card,
-	CardContent,
-} from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import {
 	ChartConfig,
 	ChartContainer,
 	ChartTooltip,
 	ChartTooltipContent,
 } from '@/components/ui/chart';
-const chartData = [
-	{ mon: 'January', score: 186 },
-	{ mon: 'February', score: 305 },
-	{ mon: 'March', score: 237 },
-	{ mon: 'April', score: 73 },
-	{ mon: 'May', score: 209 },
-	{ mon: 'June', score: 214 },
-	{ mon: 'January', score: 186 },
-	{ mon: 'February', score: 305 },
-	{ mon: 'March', score: 237 },
-	{ mon: 'April', score: 73 },
-	{ mon: 'May', score: 209 },
-	{ mon: 'June', score: 214 },
-	{ mon: 'January', score: 186 },
-	{ mon: 'February', score: 305 },
-	{ mon: 'March', score: 237 },
-	{ mon: 'April', score: 373 },
-	{ mon: 'May', score: 209 },
-	{ mon: 'June', score: 214 },
-	{ mon: 'January', score: 186 },
-	{ mon: 'February', score: 305 },
-	{ mon: 'March', score: 287 },
-	{ mon: 'April', score: 253 },
-	{ mon: 'May', score: 209 },
-	{ mon: 'June', score: 114 },
-];
+import { IPostInsightProps } from '@/types';
+import { getUserPostInsight } from '@/lib/helperFunctions';
 
-const chartConfig = {
-	score: {
-		label: 'score',
-		color: 'linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(169,223,216,1) 0%)',
-	},
-	mon: {
-		label: 'mon',
-		color: 'hsl(var(--chart-2))',
-	},
-} satisfies ChartConfig;
+const LineChart = (props: IPostInsightProps) => {
+	const { users, posts } = props;
+	const data_set = getUserPostInsight(users, posts);
 
-const LineChart = () => {
+	const chartConfig = {
+		user: {
+			label: 'score',
+			color: 'linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(169,223,216,1) 0%)',
+		},
+		total_posts: {
+			label: 'mon',
+			color: 'hsl(var(--chart-2))',
+		},
+	} satisfies ChartConfig;
+
 	return (
 		<Card className='bg-transparent'>
 			<CardContent className='p-0'>
 				<ChartContainer config={chartConfig} className='w-[452px] h-[163px]'>
 					<AreaChart
 						accessibilityLayer
-						data={chartData}
+						data={data_set}
 						margin={{
 							left: 12,
 							right: 12,
@@ -75,11 +50,11 @@ const LineChart = () => {
 							</linearGradient>
 						</defs>
 						<XAxis
-							dataKey='mon'
+							dataKey='user'
 							tickLine={false}
 							axisLine={false}
 							tickMargin={8}
-							tickFormatter={(value) => value.slice(0, 3)}
+							tickFormatter={(value) => value}
 						/>
 						<YAxis
 							tickLine={false}
@@ -92,7 +67,7 @@ const LineChart = () => {
 							content={<ChartTooltipContent indicator='line' />}
 						/>
 						<Area
-							dataKey='score'
+							dataKey='total_posts'
 							type='linear'
 							fill='url(#customGradient)'
 							fillOpacity={0.5}

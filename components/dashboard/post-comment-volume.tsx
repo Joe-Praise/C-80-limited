@@ -1,8 +1,10 @@
 import React from 'react';
 import { BentoWrapper } from '../shared';
 import { StackedBarChart } from '../charts';
+import { StackedBarChartProps } from '@/types';
 
-const PostCommentVolume = () => {
+const PostCommentVolume = (props: StackedBarChartProps) => {
+	const { posts, comments } = props;
 	return (
 		<BentoWrapper
 			element={'div'}
@@ -10,24 +12,10 @@ const PostCommentVolume = () => {
 		>
 			<p className='header-text'>Post by Comment volume</p>
 			<div className=''>
-				<StackedBarChart />
+				<StackedBarChart posts={posts} comments={comments} />
 			</div>
 		</BentoWrapper>
 	);
 };
 
 export default PostCommentVolume;
-
-{
-	/* <div className='flex items-center justify-center gap-[25px]'>
-	<div className='flex items-center gap-[11px]'>
-		<span className='size-2 bg-chart-200 block rounded-full'></span>
-		<p className='text-[10px] text-theme-300 font-medium'>Comment</p>
-	</div>
-	<div className='h-[17px] w-[2px] bg-theme-400'></div>
-	<div className='flex items-center gap-[11px]'>
-		<span className='size-2 bg-chart block rounded-full'></span>
-		<p className='text-[10px] text-theme-300 font-medium'>Post</p>
-	</div>
-</div> */
-}
